@@ -74,8 +74,8 @@ export default function MementoMori() {
   return (
     <section
       className={cn(
-        'flex flex-col border border-border bg-background rounded-2xl w-[350px] h-max p-4 ',
-        selectedFont
+        selectedFont,
+        'flex flex-col border border-border rounded-2xl w-[350px] h-max p-4 bg-background'
       )}
     >
       <div className="flex items-center justify-between w-full mb-3">

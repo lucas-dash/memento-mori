@@ -40,10 +40,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'font-primary bg-transparent antialiased min-h-screen flex items-center justify-center',
           fontPrimary.variable,
           fontSerif.variable,
-          fontMono.variable
+          fontMono.variable,
+          'font-primary bg-transparent antialiased min-h-screen flex items-center justify-center'
         )}
       >
         <ThemeProvider
