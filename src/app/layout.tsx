@@ -2,12 +2,26 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 
-import { Inter } from 'next/font/google';
+import { Inter, Merriweather, Roboto_Mono } from 'next/font/google';
 
 const fontPrimary = Inter({
   subsets: ['latin'],
   variable: '--font-primary',
   weight: ['300', '400', '500', '700'],
+  display: 'swap',
+});
+
+const fontSerif = Merriweather({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  weight: ['300', '400', '700'],
+  display: 'swap',
+});
+
+const fontMono = Roboto_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
 });
 
@@ -26,7 +40,9 @@ export default function RootLayout({
       <body
         className={cn(
           'font-primary antialiased min-h-screen flex items-center justify-center',
-          fontPrimary.variable
+          fontPrimary.variable,
+          fontSerif.variable,
+          fontMono.variable
         )}
       >
         {children}

@@ -6,7 +6,7 @@ type DotGridProps = {
 const DotGrid: React.FC<DotGridProps> = ({ yearsLived, yearsLeft }) => {
   return (
     <div className="flex flex-wrap gap-1">
-      {/* Vyplněné tečky */}
+      {/* Fill dots */}
       {Array(yearsLived)
         .fill(null)
         .map((_, index) => (
@@ -16,7 +16,7 @@ const DotGrid: React.FC<DotGridProps> = ({ yearsLived, yearsLeft }) => {
           ></div>
         ))}
 
-      {/* Prázdné tečky */}
+      {/* Empty dots */}
       {Array(yearsLeft)
         .fill(null)
         .map((_, index) => (

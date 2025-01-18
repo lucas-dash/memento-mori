@@ -13,6 +13,8 @@ export default {
     extend: {
       fontFamily: {
         primary: ['var(--font-primary)', ...fontFamily.sans],
+        serif: ['var(--font-serif)', ...fontFamily.serif],
+        mono: ['var(--font-mono)', ...fontFamily.mono],
       },
       colors: {
         background: 'hsl(var(--background))',
