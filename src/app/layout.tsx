@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 
 import { Inter, Merriweather, Roboto_Mono } from 'next/font/google';
 
@@ -39,13 +40,20 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'font-primary antialiased min-h-screen flex items-center justify-center',
+          'font-primary bg-transparent antialiased min-h-screen flex items-center justify-center',
           fontPrimary.variable,
           fontSerif.variable,
           fontMono.variable
         )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

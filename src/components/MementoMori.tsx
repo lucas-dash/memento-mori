@@ -74,7 +74,7 @@ export default function MementoMori() {
   return (
     <section
       className={cn(
-        'flex flex-col border border-border rounded-2xl w-[350px] h-max p-4',
+        'flex flex-col border border-border bg-background rounded-2xl w-[350px] h-max p-4 ',
         selectedFont
       )}
     >
@@ -89,7 +89,7 @@ export default function MementoMori() {
               >
                 <TypeOutline size={16} />
               </TooltipTrigger>
-              <TooltipContent className="rounded-2xl">
+              <TooltipContent className="rounded-xl">
                 <p className="font-medium">Change Font</p>
               </TooltipContent>
             </Tooltip>

@@ -22,7 +22,7 @@ const DotGrid: React.FC<DotGridProps> = ({ yearsLived, yearsLeft }) => {
         .map((_, index) => (
           <div
             key={`left-${index}`}
-            className="w-4 h-4 bg-gray-300 rounded-full"
+            className="w-4 h-4 bg-zinc-300 dark:bg-zinc-600 rounded-full"
           ></div>
         ))}
     </div>

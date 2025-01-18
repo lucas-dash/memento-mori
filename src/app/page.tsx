@@ -1,3 +1,4 @@
+'use client';
 import MementoMori from '@/components/MementoMori';
 
 export default function Home() {

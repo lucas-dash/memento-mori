@@ -17,15 +17,23 @@ const BirthDateForm: React.FC<BirthDateFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full items-center gap-3">
-      <Input
-        type="date"
-        id="birthDate"
-        name="birthDate"
-        placeholder="Date of birth"
-      />
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full items-end gap-3 justify-between"
+    >
+      <div className="flex flex-col w-full gap-1">
+        <label htmlFor="birthDate" className="text-sm font-medium">
+          Date of birth
+        </label>
+        <Input
+          type="date"
+          id="birthDate"
+          name="birthDate"
+          placeholder="Date of birth"
+        />
+      </div>
 
-      <Button type="submit" className="rounded-xl">
+      <Button type="submit" className="rounded-xl" size={'sm'}>
         Submit
       </Button>
     </form>
