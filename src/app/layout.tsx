@@ -43,7 +43,7 @@ export default function RootLayout({
           fontPrimary.variable,
           fontSerif.variable,
           fontMono.variable,
-          'font-primary bg-transparent antialiased min-h-screen flex items-center justify-center'
+          'font-primary bg-background antialiased min-h-screen flex items-center justify-center'
         )}
       >
         <ThemeProvider
