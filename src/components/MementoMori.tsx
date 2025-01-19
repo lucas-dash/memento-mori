@@ -14,13 +14,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import useFont from '@/hooks/useFont';
 
 export default function MementoMori() {
   const [birthDate, setBirthDate] = useState<Date | null>(null);
   const [averageLifespan] = useState<number>(80);
   const [daysLeft, setDaysLeft] = useState<number>(0);
   const [percentageLeft, setPercentageLeft] = useState<number>(0);
-  const [selectedFont, setSelectedFont] = useState('font-primary');
+  const { selectedFont, changeFont } = useFont();
 
   // birthdate load
   useEffect(() => {
@@ -45,27 +46,6 @@ export default function MementoMori() {
     }
   }, [birthDate, averageLifespan]);
 
-  const changeFonts = () => {
-    if (selectedFont.includes('primary')) {
-      setSelectedFont('font-serif');
-      localStorage.setItem('selectedFont', 'font-serif');
-    } else if (selectedFont.includes('serif')) {
-      setSelectedFont('font-mono');
-      localStorage.setItem('selectedFont', 'font-mono');
-    } else {
-      setSelectedFont('font-primary');
-      localStorage.setItem('selectedFont', 'font-primary');
-    }
-  };
-
-  // load font from LS
-  useEffect(() => {
-    const savedFont = localStorage.getItem('selectedFont');
-    if (savedFont) {
-      setSelectedFont(savedFont);
-    }
-  }, []);
-
   const handleBirthDateSubmit = (date: Date) => {
     setBirthDate(date);
     localStorage.setItem('birthDate', date.toISOString());
@@ -75,16 +55,16 @@ export default function MementoMori() {
     <section
       className={cn(
         selectedFont,
-        'flex flex-col border border-border rounded-2xl w-[350px] h-max p-4 bg-background'
+        'flex flex-col border border-border rounded-2xl w-[330px] sm:w-[350px] h-max p-4 bg-background'
       )}
     >
-      <div className="flex items-center justify-between w-full mb-3">
-        <div className="flex items-center ">
+      <div className="flex items-center justify-between w-full">
+        <div className="flex items-center">
           <h1 className="font-semibold text-lg text-center">Memento Mori</h1>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger
-                onClick={changeFonts}
+                onClick={changeFont}
                 className="relative bottom-2 left-1"
               >
                 <TypeOutline size={16} />
@@ -114,14 +94,14 @@ export default function MementoMori() {
       ) : (
         <div className="text-center">
           <DotGrid
-            yearsLived={differenceInYears(new Date(), birthDate)}
-            yearsLeft={
+            filledCount={differenceInYears(new Date(), birthDate)}
+            emptyCount={
               averageLifespan - differenceInYears(new Date(), birthDate)
             }
           />
 
           {birthDate && (
-            <div className="flex justify-between items-center mt-3">
+            <div className="flex justify-between items-center">
               <p className="font-medium">{percentageLeft}% left</p>
               <p className="font-medium">{daysLeft} days left</p>
             </div>
