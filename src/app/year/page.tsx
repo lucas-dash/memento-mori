@@ -1,6 +1,5 @@
 'use client';
 
-import useFont from '@/hooks/useFont';
 import { differenceInDays, startOfYear, endOfYear } from 'date-fns';
 import { cn } from '@/lib/utils';
 import DotGrid from '@/components/DotsGrid';
@@ -11,9 +10,31 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { TypeOutline } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function YearProgress() {
-  const { selectedFont, changeFont } = useFont();
+  const [selectedFont, setSelectedFont] = useState<string>('font-primary');
+
+  const changeFont = () => {
+    if (selectedFont.includes('primary')) {
+      setSelectedFont('font-serif');
+      localStorage.setItem('selectedFont', 'font-serif');
+    } else if (selectedFont.includes('serif')) {
+      setSelectedFont('font-mono');
+      localStorage.setItem('selectedFont', 'font-mono');
+    } else {
+      setSelectedFont('font-primary');
+      localStorage.setItem('selectedFont', 'font-primary');
+    }
+  };
+
+  // Load font from LS
+  useEffect(() => {
+    const savedFont = localStorage.getItem('selectedFont');
+    if (savedFont) {
+      setSelectedFont(savedFont);
+    }
+  }, []);
 
   const currentDate = new Date();
   const start = startOfYear(currentDate);

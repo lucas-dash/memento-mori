@@ -14,14 +14,34 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import useFont from '@/hooks/useFont';
 
 export default function MementoMori() {
   const [birthDate, setBirthDate] = useState<Date | null>(null);
   const [averageLifespan] = useState<number>(80);
   const [daysLeft, setDaysLeft] = useState<number>(0);
   const [percentageLeft, setPercentageLeft] = useState<number>(0);
-  const { selectedFont, changeFont } = useFont();
+  const [selectedFont, setSelectedFont] = useState<string>('font-primary');
+
+  const changeFont = () => {
+    if (selectedFont.includes('primary')) {
+      setSelectedFont('font-serif');
+      localStorage.setItem('selectedFont', 'font-serif');
+    } else if (selectedFont.includes('serif')) {
+      setSelectedFont('font-mono');
+      localStorage.setItem('selectedFont', 'font-mono');
+    } else {
+      setSelectedFont('font-primary');
+      localStorage.setItem('selectedFont', 'font-primary');
+    }
+  };
+
+  // Load font from LS
+  useEffect(() => {
+    const savedFont = localStorage.getItem('selectedFont');
+    if (savedFont) {
+      setSelectedFont(savedFont);
+    }
+  }, []);
 
   // birthdate load
   useEffect(() => {
